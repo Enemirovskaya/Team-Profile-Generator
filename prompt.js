@@ -81,7 +81,7 @@ const promptManager = () => {
             case 'add an intern':
                 promptIntern();
                 break;
-            default: buildTeam();
+            default: finish();
 
         }
     })
@@ -185,9 +185,17 @@ const promptIntern = ()=>
 };
 
 const finish = () => {
-    if(!fs.existsSync(directOutput)){
-        fs.mkdirSync(directOutput)
-    }
-    fs.writeFileSync(outputPath, generateSite(teamMember));
+
+    // if(!fs.existsSync(directOutput)){
+    //     fs.mkdirSync(directOutput)
+    // }
+
+
+    fs.writeFileSync(outputPath, webSite(teamMember),(err) =>{
+        if(err){
+            console.log(err)
+        }
+        console.log('Team Profile Generated')
+    })
 }
 promptManager();

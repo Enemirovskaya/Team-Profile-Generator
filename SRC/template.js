@@ -1,4 +1,4 @@
-const template = (team) => {
+ const template = (team) => {
     // create empty array to push and loop data
     const html = [];
  
