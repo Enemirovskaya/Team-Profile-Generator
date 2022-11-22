@@ -6,10 +6,11 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 
-const webSite = require('./src/template.js');
+const webSite = require('./src/template.js')
+
 const path = require('path');
 const directOutput = path.resolve(__dirname, 'output');
-const outputPath = path.join(directOutput, 'index.html');
+const outputPath = path.join(directOutput, 'team.html');
 const teamMember = [];
 
 // Promp of questions to build Manager's profile
@@ -24,8 +25,8 @@ const promptManager = () => {
                 return true;                 
             }   else {console.log('Please enter the name!');
                 return false;
-            }},
-
+            }}
+        },{
             type: 'input',
             name: 'id',
             message: 'Enter employee\'s ID?',
@@ -35,7 +36,7 @@ const promptManager = () => {
             }   else {console.log('Please enter ID!');
                 return false;
             }},
-
+        },{
             type: 'input',
             name: 'email',
             message: 'Enter employee\'s email?',
@@ -45,7 +46,7 @@ const promptManager = () => {
             }   else {console.log('Please enter email!');
                 return false;
             }},
-
+        },{
             type: 'input',
             name: 'officeNumber',
             message: 'Enter employee\'s office number?',
@@ -54,9 +55,7 @@ const promptManager = () => {
                 return true;                  
             }   else {console.log('Please enter office number!');
                 return false;
-            }},
-            
-
+            }} 
         }
     ]).then(answers => {
         console.log(answers);
@@ -71,10 +70,14 @@ const promptManager = () => {
             type: 'list',
             name: 'options',
             message: 'Please select next options:',
-            choices: ['add an engineer', 'add an intern', 'finish building team']
+            choices: ['add an engineer', 
+                      'add an intern', 
+                      'finish building team'
+                    ]
 
     }]).then(userChoice => {
-        switch(userChoice.menu){
+        console.log(userChoice)
+        switch(userChoice.options){
             case 'add an engineer':
                 promptEngineer();
                 break;
@@ -90,17 +93,16 @@ const promptManager = () => {
 const promptEngineer = ()=>
 {
     return inquirer.prompt([
-    {
-            type: 'input',
+
+        { type: 'input',
             name: 'name',
             message: 'Enter engineer\'s name?',
             validate: engineerName => {
                 if(engineerName){
                 return true;                 
             }   else {console.log('Please enter the name!');
-                return false;}},
-            
-            
+                return false;}}
+        },{    
                 type: 'input',
                 name: 'engineerId',
                 message: 'Enter employee\'s ID?',
@@ -109,7 +111,7 @@ const promptEngineer = ()=>
                     return true;                 
                 }   else {console.log('Please enter ID!');
                     return false;}},
-                
+            },{
                 type: 'input',
                 name: 'engineerEmail',
                 message: 'Enter employee\'s email?',
@@ -118,7 +120,7 @@ const promptEngineer = ()=>
                     return true;                 
                 }   else {console.log('Please enter email!');
                     return false;}},
-
+            },{
                 type: 'input',
                 name: 'github',
                 message: 'Enter employee\'s GitHub?',
@@ -126,8 +128,9 @@ const promptEngineer = ()=>
                     if(github){
                     return true;                 
                 }   else {console.log('Please enter GitHub!');
-                    return false;}},
-    }]).then(answers => {
+                    return false;}}
+             }
+]).then(answers => {
         console.log(answers);
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
         teamMember.push(engineer);
@@ -139,7 +142,7 @@ const promptEngineer = ()=>
 const promptIntern = ()=>
 {
     return inquirer.prompt([
-    {
+         {
             type: 'input',
             name: 'name',
             message: 'Enter intern\'s name?',
@@ -147,9 +150,8 @@ const promptIntern = ()=>
                 if(internName){
                 return true;                 
             }   else {console.log('Please enter the name!');
-                return false;}},
-            
-            
+                return false;}}
+        },{   
                 type: 'input',
                 name: 'engineerId',
                 message: 'Enter employee\'s ID?',
@@ -157,8 +159,8 @@ const promptIntern = ()=>
                     if(id){
                     return true;                 
                 }   else {console.log('Please enter ID!');
-                    return false;}},
-                
+                    return false;}}
+        },{       
                 type: 'input',
                 name: 'engineerEmail',
                 message: 'Enter employee\'s email?',
@@ -166,8 +168,8 @@ const promptIntern = ()=>
                     if(email){
                     return true;                 
                 }   else {console.log('Please enter email!');
-                    return false;}},
-
+                    return false;}}
+        },{
                 type: 'input',
                 name: 'school',
                 message: 'Enter employee\'s school name?',
@@ -175,8 +177,9 @@ const promptIntern = ()=>
                     if(school){
                     return true;                 
                 }   else {console.log('Please enter school name!');
-                    return false;}},
-    }]).then(answers => {
+                    return false;}}
+        }
+    ]).then(answers => {
         console.log(answers);
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
         teamMember.push(intern);
@@ -186,16 +189,14 @@ const promptIntern = ()=>
 
 const finish = () => {
 
-    // if(!fs.existsSync(directOutput)){
-    //     fs.mkdirSync(directOutput)
-    // }
-
-
-    fs.writeFileSync(outputPath, webSite(teamMember),(err) =>{
-        if(err){
-            console.log(err)
-        }
-        console.log('Team Profile Generated')
-    })
+    if(!fs.existsSync(directOutput)){
+        fs.mkdirSync(directOutput)
+    }
+    fs.writeFileSync(outputPath, webSite(teamMember), "utf-8");
+        // if(err){
+        //     console.log(err)
+        // }
+        // console.log('Team Profile Generated')
 }
+
 promptManager();
