@@ -6,7 +6,7 @@
         const templateManager = manager => {
         //HTML for manager
          let managerHTML = `
-        <div class="box">
+        <div class="box col-lg-3">
          <div class="box-header">
             <h2 class="card-title">${manager.name}</h2>
             <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3> 
@@ -22,7 +22,7 @@
     //HTML for engineer
     const templateEngineer = engineer =>{
         let engineerHTML =`
-    <div class="box">
+    <div class="box col-lg-3">
          <div class="box-header">
              <h2 class="card-title">${engineer.name}</h2>
             <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>Engineer</h3> 
@@ -38,7 +38,7 @@
         //HTML for intern
         const templateIntern = intern =>{
         let internHTML =`
-     <div class="box">
+     <div class="box col-lg-3">
          <div class="box-header">
              <h2 class="card-title">${intern.name}</h2>
              <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>Intern</h3> 
@@ -92,8 +92,8 @@ module.exports = team => {
         </header>
     
         <main>
-            <section class="container row">
-                 <div class="team-area col-3 "> 
+            <section class="container">
+                 <div class="team-area row"> 
                       ${template(team)}
                  </div>  
             </section>

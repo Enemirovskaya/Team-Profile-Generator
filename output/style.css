@@ -11,7 +11,7 @@ section{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-   justify-content: center;
+   /* justify-content: center; */
 }
 
 .box{
@@ -19,6 +19,7 @@ section{
     box-shadow: 3px 3px 3px gray;
     border-radius: 3px; 
     background-color: rgb(229, 228, 228);
+    margin: 20px 5px 5px 5px;
 }
 .box-header{
     background-color: blue;
@@ -29,10 +30,11 @@ span{
 }
 .list{
     list-style-type: none;
+    padding: 0px;
     
 }
 ul{
-  margin 0;  
+  margin: 0;  
 }
 li{
     background-color: white;
