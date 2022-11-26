@@ -94,17 +94,17 @@ const promptEngineer = ()=>
 {
     return inquirer.prompt([
 
-        { type: 'input',
-            name: 'name',
-            message: 'Enter engineer\'s name?',
+            {type: 'input',
+             name: 'name',
+             message: 'Enter engineer\'s name?',
             validate: engineerName => {
                 if(engineerName){
                 return true;                 
             }   else {console.log('Please enter the name!');
                 return false;}}
-        },{    
+            },{    
                 type: 'input',
-                name: 'engineerId',
+                name: 'id',
                 message: 'Enter employee\'s ID?',
                 validate: id => {
                     if(id){
@@ -113,7 +113,7 @@ const promptEngineer = ()=>
                     return false;}},
             },{
                 type: 'input',
-                name: 'engineerEmail',
+                name: 'email',
                 message: 'Enter employee\'s email?',
                 validate: email => {
                     if(email){
@@ -153,7 +153,7 @@ const promptIntern = ()=>
                 return false;}}
         },{   
                 type: 'input',
-                name: 'engineerId',
+                name: 'id',
                 message: 'Enter employee\'s ID?',
                 validate: id => {
                     if(id){
@@ -162,7 +162,7 @@ const promptIntern = ()=>
                     return false;}}
         },{       
                 type: 'input',
-                name: 'engineerEmail',
+                name: 'email',
                 message: 'Enter employee\'s email?',
                 validate: email => {
                     if(email){
